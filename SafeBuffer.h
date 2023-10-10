@@ -7,8 +7,8 @@
  * Created: Tue Jan  8 12:30:23 2019 (+0000)
  * Version: 
  * Package-Requires: ()
- * Last-Updated: Tue Jan  8 12:30:25 2019 (+0000)
- *           By: Joseph
+ * Last-Updated: Tue Oct 10 12:29:00 2023 (+0000)
+ *           By: Alex Paquette
  *     Update #: 1
  * URL: 
  * Doc URL: 
@@ -43,7 +43,30 @@
  */
 
 /* Code: */
+#include "Semaphore.h"
+#include "Event.h"
+#include <iostream>
 
+/*! \class Buffer
+    \brief A Buffer Implementation
+
+   Uses C++11 features to implement a Buffer class that contains an array of events, as well as Semaphores to controll access
+   to the events array. It contains Add() and Remove() methods to add and remove events from the array.
+
+*/
+class Buffer{
+    private:
+        int position;
+        Event events[5];
+        std::shared_ptr<Semaphore> mutex;
+        std::shared_ptr<Semaphore> itemSem;
+        std::shared_ptr<Semaphore> spaceSem;
+
+    public:
+        Buffer();
+        void Add();
+        void Remove();
+}
 
 
 /* SafeBuffer.h ends here */

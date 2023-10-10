@@ -7,8 +7,8 @@
  * Created: Tue Jan  8 12:30:05 2019 (+0000)
  * Version: 
  * Package-Requires: ()
- * Last-Updated: Tue Jan  8 12:30:14 2019 (+0000)
- *           By: Joseph
+ * Last-Updated: Mon Oct 9 12:40:00 2023 (+0000)
+ *           By: Alex Paquette
  *     Update #: 1
  * URL: 
  * Doc URL: 
@@ -43,7 +43,24 @@
  */
 
 /* Code: */
+#include <iostream>
+#include <random>
 
+/*! \class Event
+    \brief An class representing an Event
+
+   A simple event class used to represent events for simulation purposes. Contains
+   a character value and a Consume() method that will display the character value in uppercase.
+
+*/
+class Event{
+    private:
+        char value;
+
+    public:
+        Event();
+        void Consume();
+}
 
 
 /* Event.h ends here */
