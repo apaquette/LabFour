@@ -59,7 +59,7 @@ class Event{
 
     public:
         Event();
-        void Consume();
+        void consume();
 }
 
 

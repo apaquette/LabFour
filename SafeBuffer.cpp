@@ -17,7 +17,7 @@ SafeBuffer::SafeBuffer(){
 }
 
 /*! Add an event to the buffer */   
-void SafeBuffer::Add(Event e){
+void SafeBuffer::put(std::shared_ptr<Event> e){
     mutext->Wait();
     events[position] = e;
     UpdatePosition();
@@ -26,13 +26,13 @@ void SafeBuffer::Add(Event e){
 }
 
 /*! Remove an event from the buffer*/
-void SafeBuffer::Remove(){
+std::shared_ptr<Event> SafeBuffer::get(){
     items->Wait();
     mutex->Wait();
     Event e = events[position];
     UpdatePosition();
     mutex->Signal();
-    e.Consume();
+    return e;
 }
 
 void SafeBuffer::UpdatePosition(){

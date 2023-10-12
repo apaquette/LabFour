@@ -16,6 +16,6 @@ Event::Event(){
 }
 
 /*! Consume method that outputs the character value of the event in upper case*/
-void Event::Consume(){
+void Event::consume(){
     //output the letter as an uppercase
 }

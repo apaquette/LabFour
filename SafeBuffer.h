@@ -67,8 +67,8 @@ class SafeBuffer{
 
     public:
         SafeBuffer();
-        void Add(Event e);
-        void Remove();
+        void put(std::shared_ptr<Event> e);
+        std::shared_ptr<Event> get();
 }
 
 
