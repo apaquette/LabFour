@@ -17,7 +17,7 @@ void producer(std::shared_ptr<SafeBuffer<std::shared_ptr<Event>> theBuffer, int 
 
   for(int i=0;i<numLoops;++i){
     //Produce event and add to buffer
-    std::shared_ptr<Event> e= std::make_shared<Event>(i);
+    std::shared_ptr<Event> e = std::make_shared<Event>(i);
     theBuffer.put(e);
   }
   

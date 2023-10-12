@@ -9,19 +9,34 @@
 */
 
 /*! Parameterless constructor for the Buffer Class*/
-Buffer::Buffer(){
+SafeBuffer::SafeBuffer(){
     position = 0;
-    events = {};
+    events = std::vector(5);
     mutex = std::make_shared<Semaphore>(1); //control access to the buffer
-    itemSem = std::make_shared<Semaphore>(0); //blocks when the buffer is empty
+    items = std::make_shared<Semaphore>(0); //blocks when the buffer is empty
 }
 
 /*! Add an event to the buffer */   
-void Buffer::Add(){
-    
+void SafeBuffer::Add(Event e){
+    mutext->Wait();
+    events[position] = e;
+    UpdatePosition();
+    mutex->Signal();
+    items->Signal();
 }
 
 /*! Remove an event from the buffer*/
-void Buffer::Remove(){
+void SafeBuffer::Remove(){
+    items->Wait();
+    mutex->Wait();
+    Event e = events[position];
+    UpdatePosition();
+    mutex->Signal();
+    e.Consume();
+}
 
+void SafeBuffer::UpdatePosition(){
+    if(++position == events.size()){//if we reached the end of the list, go back to the start
+        position = 0;
+    }
 }
