@@ -62,7 +62,7 @@ class SafeBuffer{
         std::vector<Event> events;
         std::shared_ptr<Semaphore> mutex;
         std::shared_ptr<Semaphore> items;
-        std::shared_ptr<Semaphore> spaceSem;
+        std::shared_ptr<Semaphore> positionSem;
         void UpdatePosition()
 
     public:

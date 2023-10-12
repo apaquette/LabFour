@@ -14,11 +14,12 @@ SafeBuffer::SafeBuffer(){
     events = std::vector(5);
     mutex = std::make_shared<Semaphore>(1); //control access to the buffer
     items = std::make_shared<Semaphore>(0); //blocks when the buffer is empty
+    positionSem = std::make_shared<Semaphore>(1);
 }
 
 /*! Add an event to the buffer */   
 void SafeBuffer::put(std::shared_ptr<Event> e){
-    mutext->Wait();
+    mutex->Wait();
     events[position] = e;
     UpdatePosition();
     mutex->Signal();
@@ -36,7 +37,9 @@ std::shared_ptr<Event> SafeBuffer::get(){
 }
 
 void SafeBuffer::UpdatePosition(){
+    positionSem->Wait();
     if(++position == events.size()){//if we reached the end of the list, go back to the start
         position = 0;
     }
+    positionSem->Signal();
 }
