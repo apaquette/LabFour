@@ -60,7 +60,7 @@ class Event{
     public:
         Event();
         void consume();
-}
+};
 
 
 /* Event.h ends here */

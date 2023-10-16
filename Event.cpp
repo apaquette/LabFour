@@ -17,5 +17,6 @@ Event::Event(){
 
 /*! Consume method that outputs the character value of the event in upper case*/
 void Event::consume(){
+    std::cout << "Consumed\n";
     //output the letter as an uppercase
 }

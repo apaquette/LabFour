@@ -2,11 +2,11 @@
 #9-Oct-2023
 
 CC=g++
-CPPFILES = Semaphore.cpp Barrier.cpp main.cpp
-HFILES = Barrier.h Semaphore.h
-OBJFILES = Barrier.o main.o Semaphore.o
+CPPFILES = Semaphore.cpp SafeBuffer.cpp Event.cpp main.cpp
+HFILES = SafeBuffer.h Semaphore.h Event.h
+OBJFILES = SafeBuffer.o main.o Semaphore.o Event.o
 CFLAGS = -std=c++11 -pthread -I. -Wall
-EXE = barrier
+EXE = safeBuffer
 
 %.o: %.cpp
 	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
@@ -21,4 +21,4 @@ CLEAN:
 	rm $(OBJFILES) $(EXE)
 
 INSTALL:
-	cp ./barrier /usr/bin/barrier
+	cp ./safeBuffer /usr/bin/safeBuffer

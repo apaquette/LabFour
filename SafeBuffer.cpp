@@ -8,17 +8,19 @@
 
 */
 
-/*! Parameterless constructor for the Buffer Class*/
-SafeBuffer::SafeBuffer(){
+/*! Constructor for the Buffer Class with size*/
+template <typename T>
+SafeBuffer<T>::SafeBuffer(int size){
     position = 0;
-    events = std::vector(5);
+    events = std::vector<T>(size);
     mutex = std::make_shared<Semaphore>(1); //control access to the buffer
     items = std::make_shared<Semaphore>(0); //blocks when the buffer is empty
     positionSem = std::make_shared<Semaphore>(1);
 }
 
-/*! Add an event to the buffer */   
-void SafeBuffer::put(std::shared_ptr<Event> e){
+/*! Add an event to the buffer */
+template <typename T> 
+void SafeBuffer<T>::put(T e){
     mutex->Wait();
     events[position] = e;
     UpdatePosition();
@@ -27,16 +29,18 @@ void SafeBuffer::put(std::shared_ptr<Event> e){
 }
 
 /*! Remove an event from the buffer*/
-std::shared_ptr<Event> SafeBuffer::get(){
+template <typename T> 
+T SafeBuffer<T>::get(){
     items->Wait();
     mutex->Wait();
-    Event e = events[position];
+    T e = events[position];
     UpdatePosition();
     mutex->Signal();
     return e;
 }
 
-void SafeBuffer::UpdatePosition(){
+template <typename T> 
+void SafeBuffer<T>::UpdatePosition(){
     positionSem->Wait();
     if(++position == events.size()){//if we reached the end of the list, go back to the start
         position = 0;
