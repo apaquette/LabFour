@@ -44,7 +44,7 @@
 
 /* Code: */
 #include "Semaphore.h"
-//#include "Event.h"
+#include "Event.h"
 #include <iostream>
 #include <vector>
 
@@ -55,20 +55,21 @@
    to the events array. It contains Add() and Remove() methods to add and remove events from the vector array.
 
 */
-template <typename T> class SafeBuffer{
+class SafeBuffer{
     private:
         int position;
         //Event events[5];
-        std::vector<T> events;
+        std::vector<std::shared_ptr<Event>> events;
         std::shared_ptr<Semaphore> mutex;
         std::shared_ptr<Semaphore> items;
         std::shared_ptr<Semaphore> positionSem;
         void UpdatePosition();
 
     public:
+        SafeBuffer();
         SafeBuffer(int size);
-        void put(T e);
-        T get();
+        void put(std::shared_ptr<Event> e);
+        std::shared_ptr<Event> get();
 };
 
 
