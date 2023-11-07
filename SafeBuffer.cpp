@@ -4,52 +4,70 @@
     \brief A Buffer Implementation
 
    Uses C++11 features to implement a Buffer class that contains an array of events, as well as Semaphores to controll access
-   to the events array. It contains Add() and Remove() methods to add and remove events from the array.
+   to the events array. It contains put() and get() methods to add and remove events from the array.
 
 */
-
-SafeBuffer::SafeBuffer(){
-    position = 0;
-    events = std::vector<std::shared_ptr<Event>>(5);
-    mutex = std::make_shared<Semaphore>(1); //control access to the buffer
-    items = std::make_shared<Semaphore>(0); //blocks when the buffer is empty
-    positionSem = std::make_shared<Semaphore>(1);
-}
 
 
 /*! Constructor for the Buffer Class with size*/
 SafeBuffer::SafeBuffer(int size){
-    position = 0;
+    producerPosition = 0;
+    consumerPosition = 0;
+
     events = std::vector<std::shared_ptr<Event>>(size);
+
+    spaces = std::make_shared<Semaphore>(size); //prevent from putting when buffer is full
     mutex = std::make_shared<Semaphore>(1); //control access to the buffer
     items = std::make_shared<Semaphore>(0); //blocks when the buffer is empty
-    positionSem = std::make_shared<Semaphore>(1);
+    producerPositionSem = std::make_shared<Semaphore>(1);
+    consumerPositionSem = std::make_shared<Semaphore>(1);
 }
 
 
 /*! Add an event to the buffer */
 void SafeBuffer::put(std::shared_ptr<Event> e){
+    spaces->Wait();
     mutex->Wait();
-    events[position] = e;
-    UpdatePosition();
+
+    producerPositionSem->Wait();
+
+    events[producerPosition] = e;
+
+    if(++producerPosition == events.size()){//if we reached the end of the list, go back to the start
+        producerPosition = 0;
+    }
+
+    producerPositionSem->Signal();
+
     mutex->Signal();
     items->Signal();
 }
 
 /*! Remove an event from the buffer*/
-std::shared_ptr<Event> SafeBuffer::get(){
+void SafeBuffer::get(){
     items->Wait();
     mutex->Wait();
-    std::shared_ptr<Event> e = events[position];
-    UpdatePosition();
+
+    consumerPositionSem->Wait();
+
+    events[consumerPosition]->consume();
+
+    if(++consumerPosition == events.size()){//if we reached the end of the list, go back to the start
+        consumerPosition = 0;
+    }
+
+    consumerPositionSem->Signal();
+
     mutex->Signal();
-    return e;
+    spaces->Signal();
+    //items->Signal();
 }
 
-void SafeBuffer::UpdatePosition(){
-    positionSem->Wait();
-    if(++position == events.size()){//if we reached the end of the list, go back to the start
-        position = 0;
-    }
-    positionSem->Signal();
-}
+// void SafeBuffer::UpdatePosition(){
+//     positionSem->Wait();
+//     if(++position == events.size()){//if we reached the end of the list, go back to the start
+//         position = 0;
+//     }
+//     //printf("Position: %d\n", position);
+//     positionSem->Signal();
+// }

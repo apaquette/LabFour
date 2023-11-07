@@ -57,19 +57,20 @@
 */
 class SafeBuffer{
     private:
-        int position;
-        //Event events[5];
+        int producerPosition;
+        int consumerPosition;
         std::vector<std::shared_ptr<Event>> events;
         std::shared_ptr<Semaphore> mutex;
         std::shared_ptr<Semaphore> items;
-        std::shared_ptr<Semaphore> positionSem;
+        std::shared_ptr<Semaphore> spaces;
+        std::shared_ptr<Semaphore> producerPositionSem;
+        std::shared_ptr<Semaphore> consumerPositionSem;
         void UpdatePosition();
 
     public:
-        SafeBuffer();
         SafeBuffer(int size);
         void put(std::shared_ptr<Event> e);
-        std::shared_ptr<Event> get();
+        void get();
 };
 
 

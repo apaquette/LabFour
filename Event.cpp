@@ -11,15 +11,14 @@
 
 /*! Parameterless constructor for the Event Class*/
 Event::Event(){
-    value = 'a';//make this random
-    //std::cout << "Created\n";
     //generate a lower case letter randomnly
+    value = 'a' + rand()%26;//make this random
     //output the lower letter's value
+    //std::cout << value;
+    printf("%c\n", value);
 }
 
 /*! Consume method that outputs the character value of the event in upper case*/
 void Event::consume(){
-    //std::cout << "Consumed\n";
-    std::cout << toupper(value);
-    //output the letter as an uppercase
+    printf("%c\n", toupper(value));
 }
