@@ -60,14 +60,4 @@ void SafeBuffer::get(){
 
     mutex->Signal();
     spaces->Signal();
-    //items->Signal();
 }
-
-// void SafeBuffer::UpdatePosition(){
-//     positionSem->Wait();
-//     if(++position == events.size()){//if we reached the end of the list, go back to the start
-//         position = 0;
-//     }
-//     //printf("Position: %d\n", position);
-//     positionSem->Signal();
-// }

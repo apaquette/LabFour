@@ -9,12 +9,9 @@
 
 */
 
-/*! Parameterless constructor for the Event Class*/
+/*! Parameterless constructor for the Event Class. The constructor generates a random lower case letter then outputs that letter*/
 Event::Event(){
-    //generate a lower case letter randomnly
-    value = 'a' + rand()%26;//make this random
-    //output the lower letter's value
-    //std::cout << value;
+    value = 'a' + rand()%26;
     printf("%c\n", value);
 }
 

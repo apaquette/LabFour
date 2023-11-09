@@ -12,18 +12,15 @@ const int size = 5;
 // */
 void producer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
   for(int i = 0; i < numLoops; ++i){
-    //Produce event and add to buffer
-    //std::shared_ptr<Event> e = std::make_shared<Event>();
     theBuffer->put(std::make_shared<Event>());
   }
 }
 
 // /*! \fn consumer
-//     \brief Takes events from buffer and consumes them
+//     \brief Consumes events from buffer
 // */
 void consumer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
   for(int i = 0; i < numLoops; ++i){
-    //Consume event and remove from buffer
     theBuffer->get();
   }
 }
@@ -49,6 +46,5 @@ int main(void){
   for (auto& v :consumers){
       v.join();
   }
-  //std::cout << sharedVariable << std::endl;
   return 0;
 }

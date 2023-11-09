@@ -52,7 +52,7 @@
     \brief A Buffer Implementation
 
    Uses C++11 features to implement a Buffer class that contains an array of events, as well as Semaphores to controll access
-   to the events array. It contains Add() and Remove() methods to add and remove events from the vector array.
+   to the events array. It contains put() and get() methods to add and remove events from the vector array.
 
 */
 class SafeBuffer{
