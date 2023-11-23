@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['safebuffer_10',['SafeBuffer',['../classSafeBuffer.html',1,'SafeBuffer'],['../classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7',1,'SafeBuffer::SafeBuffer()']]],
-  ['semaphore_11',['Semaphore',['../classSemaphore.html',1,'']]]
+  ['wait_12',['Wait',['../classSemaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda',1,'Semaphore::Wait()'],['../classSemaphore.html#a7f700173ae86ae623684109066e07656',1,'Semaphore::Wait(const std::chrono::duration&lt; R, P &gt; &amp;crRelTime)']]]
 ];

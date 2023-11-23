@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['safebuffer_12',['SafeBuffer',['../classSafeBuffer.html',1,'']]],
-  ['semaphore_13',['Semaphore',['../classSemaphore.html',1,'']]]
+  ['safebuffer_14',['SafeBuffer',['../classSafeBuffer.html',1,'']]],
+  ['semaphore_15',['Semaphore',['../classSemaphore.html',1,'']]]
 ];
