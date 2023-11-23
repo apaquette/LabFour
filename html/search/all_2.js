@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['event_2',['Event',['../classEvent.html',1,'Event'],['../classEvent.html#a5a40dd4708297f7031e29b39e039ae10',1,'Event::Event()']]]
+  ['get_3',['get',['../classSafeBuffer.html#aff5b0527f70cefef2d82d65c8854a100',1,'SafeBuffer']]]
 ];

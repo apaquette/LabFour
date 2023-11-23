@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A <a class="el" href="classBuffer.html" title="A Buffer Implementation.">Buffer</a> Implementation.  
+<p>A Buffer Implementation.  
  <a href="classSafeBuffer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="SafeBuffer_8h_source.html">SafeBuffer.h</a>&gt;</code></p>
@@ -77,15 +77,19 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab690cf4b2513286825ce710b96b992a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">SafeBuffer</a> (int size)</td></tr>
+<tr class="memdesc:ab690cf4b2513286825ce710b96b992a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the Buffer Class with size.  <a href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">More...</a><br /></td></tr>
 <tr class="separator:ab690cf4b2513286825ce710b96b992a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34c4c8ca783ed7d80c14461258583e24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSafeBuffer.html#a34c4c8ca783ed7d80c14461258583e24">put</a> (std::shared_ptr&lt; <a class="el" href="classEvent.html">Event</a> &gt; e)</td></tr>
+<tr class="memdesc:a34c4c8ca783ed7d80c14461258583e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an event to the buffer.  <a href="classSafeBuffer.html#a34c4c8ca783ed7d80c14461258583e24">More...</a><br /></td></tr>
 <tr class="separator:a34c4c8ca783ed7d80c14461258583e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff5b0527f70cefef2d82d65c8854a100"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSafeBuffer.html#aff5b0527f70cefef2d82d65c8854a100">get</a> ()</td></tr>
+<tr class="memitem:aff5b0527f70cefef2d82d65c8854a100"><td class="memItemLeft" align="right" valign="top"><a id="aff5b0527f70cefef2d82d65c8854a100"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSafeBuffer.html#aff5b0527f70cefef2d82d65c8854a100">get</a> ()</td></tr>
+<tr class="memdesc:aff5b0527f70cefef2d82d65c8854a100"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an event from the buffer. <br /></td></tr>
 <tr class="separator:aff5b0527f70cefef2d82d65c8854a100"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A <a class="el" href="classBuffer.html" title="A Buffer Implementation.">Buffer</a> Implementation. </p>
-<p>Uses C++11 features to implement a <a class="el" href="classBuffer.html" title="A Buffer Implementation.">Buffer</a> class that contains an array of events, as well as Semaphores to controll access to the events array. It contains <a class="el" href="classSafeBuffer.html#a34c4c8ca783ed7d80c14461258583e24">put()</a> and <a class="el" href="classSafeBuffer.html#aff5b0527f70cefef2d82d65c8854a100">get()</a> methods to add and remove events from the vector array. </p>
+<div class="textblock"><p>A Buffer Implementation. </p>
+<p>Uses C++11 features to implement a Buffer class that contains an array of events, as well as Semaphores to controll access to the events array. It contains <a class="el" href="classSafeBuffer.html#a34c4c8ca783ed7d80c14461258583e24" title="Add an event to the buffer.">put()</a> and <a class="el" href="classSafeBuffer.html#aff5b0527f70cefef2d82d65c8854a100" title="Remove an event from the buffer.">get()</a> methods to add and remove events from the array. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab690cf4b2513286825ce710b96b992a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab690cf4b2513286825ce710b96b992a7">&#9670;&nbsp;</a></span>SafeBuffer()</h2>
@@ -102,29 +106,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor for the <a class="el" href="classBuffer.html" title="A Buffer Implementation.">Buffer</a> Class with size </p>
+
+<p>Constructor for the Buffer Class with size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Size of the vector of events </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aff5b0527f70cefef2d82d65c8854a100"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff5b0527f70cefef2d82d65c8854a100">&#9670;&nbsp;</a></span>get()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SafeBuffer::get </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Remove an event from the buffer </p>
-
-</div>
-</div>
 <a id="a34c4c8ca783ed7d80c14461258583e24"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a34c4c8ca783ed7d80c14461258583e24">&#9670;&nbsp;</a></span>put()</h2>
 
@@ -140,7 +133,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Add an event to the buffer </p>
+
+<p>Add an event to the buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td><a class="el" href="classEvent.html" title="An class representing an Event.">Event</a> to be added to the buffer </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

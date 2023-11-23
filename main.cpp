@@ -3,22 +3,31 @@
 #include <thread>
 #include <vector>
 
+/*! \file main.cpp
+    \brief main file for demonstrating producers and consumers
+*/
 
 static const int num_threads = 50;
 const int size = 5;
 
-// /*! \fn producer
-//     \brief Creates events and adds them to buffer
-// */
+/*! 
+    \fn void producer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops)
+    \brief Creates events and adds them to buffer
+    \param theBuffer SafeBuffer that contains shared events
+    \param numLoops Number of times loops through the buffer
+*/
 void producer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
   for(int i = 0; i < numLoops; ++i){
     theBuffer->put(std::make_shared<Event>());
   }
 }
 
-// /*! \fn consumer
-//     \brief Consumes events from buffer
-// */
+/*! 
+    \fn void consumer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops)
+    \brief Consumes events from buffer
+    \param theBuffer SafeBuffer that contains shared events
+    \param numLoops Number of times loops through the buffer
+*/
 void consumer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
   for(int i = 0; i < numLoops; ++i){
     theBuffer->get();

@@ -1,6 +1,6 @@
 #include "SafeBuffer.h"
 
-/*! \class Buffer
+/*! \class SafeBuffer
     \brief A Buffer Implementation
 
    Uses C++11 features to implement a Buffer class that contains an array of events, as well as Semaphores to controll access
@@ -9,7 +9,11 @@
 */
 
 
-/*! Constructor for the Buffer Class with size*/
+/*! 
+    \fn SafeBuffer::SafeBuffer(int size)
+    \brief Constructor for the Buffer Class with size
+    \param size Size of the vector of events
+*/
 SafeBuffer::SafeBuffer(int size){
     producerPosition = 0;
     consumerPosition = 0;
@@ -24,7 +28,11 @@ SafeBuffer::SafeBuffer(int size){
 }
 
 
-/*! Add an event to the buffer */
+/*! 
+    \fn void SafeBuffer::put(std::shared_ptr<Event> e)
+    \brief Add an event to the buffer 
+    \param e Event to be added to the buffer
+*/
 void SafeBuffer::put(std::shared_ptr<Event> e){
     spaces->Wait();
     mutex->Wait();
@@ -43,7 +51,10 @@ void SafeBuffer::put(std::shared_ptr<Event> e){
     items->Signal();
 }
 
-/*! Remove an event from the buffer*/
+/*! 
+    \fn void SafeBuffer::get()
+    \brief Remove an event from the buffer
+*/
 void SafeBuffer::get(){
     items->Wait();
     mutex->Wait();
